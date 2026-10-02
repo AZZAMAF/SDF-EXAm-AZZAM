@@ -36,12 +36,12 @@ File ini adalah tanda bahwa **repo-mu sudah jadi** dan bisa dikenali dosen. Isi 
 
 ## Checklist
 
-- [ ] Sudah punya akun GitHub
-- [ ] Repo dibuat dari template (ada keterangan *generated from* di bawah nama repo)
-- [ ] Repo berstatus **Private**
-- [ ] Dosen sudah ditambahkan sebagai collaborator
-- [ ] `identitas.md` sudah terisi dan sudah di-commit
-- [ ] URL repo sudah dikirim ke dosen
+- [Sudah ] Sudah punya akun GitHub
+- [ AZZAMAF] Repo dibuat dari template (ada keterangan *generated from* di bawah nama repo)
+- [ Private] Repo berstatus **Private**
+- [ Yes] Dosen sudah ditambahkan sebagai collaborator
+- [ Yes] `identitas.md` sudah terisi dan sudah di-commit
+- [ Yes] URL repo sudah dikirim ke dosen
 
 ## Kalau Ada Masalah
 
