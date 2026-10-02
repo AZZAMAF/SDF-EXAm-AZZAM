@@ -4,12 +4,12 @@ File ini adalah tanda bahwa **repo-mu sudah jadi** dan bisa dikenali dosen. Isi 
 
 | Data | Isian |
 |---|---|
-| Nama lengkap | |
-| NIM | |
-| Kelas | |
-| Username GitHub | |
-| URL repo-mu | |
-| Tanggal repo dibuat | |
+| Nama lengkap | Abdullah Azzam Firdaus |
+| NIM | 26110300018 |
+| Kelas | SDF01 |
+| Username GitHub | AZZAMAF |
+| URL repo-mu | https://github.com/AZZAMAF/SDF-EXAm-AZZAM|
+| Tanggal repo dibuat | 2026 Oktober 2|
 
 > Tabel ini ditulis dengan Markdown. Tanda `|` memisahkan kolom. Isi dengan mengetik di antara dua tanda `|` pada kolom kanan, jangan menghapus tanda-tandanya.
 
