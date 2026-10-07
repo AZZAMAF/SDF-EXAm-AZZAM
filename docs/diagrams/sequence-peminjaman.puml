@@ -1,0 +1,25 @@
+@startuml
+actor Anggota
+participant "Modul Transaksi" as MT
+participant "Modul Akun" as MA
+participant "Modul Buku" as MB
+
+Anggota -> MT: Meminta peminjaman buku
+activate MT
+
+MT -> MA: Memanggil fungsi validasi status keanggotaan
+activate MA
+MA --> MT: Status aktif & batas kuota pinjam belum penuh
+deactivate MA
+
+MT -> MB: Memeriksa ketersediaan stok buku di rak
+activate MB
+MB --> MT: Stok tersedia (>0)
+MT -> MB: Mengurangi stok_tersedia (-1)
+MB --> MT: Stok berhasil diperbarui
+deactivate MB
+
+MT -> MT: Mencatat data peminjaman & menghitung jatuh tempo
+MT --> Anggota: Menampilkan bukti peminjaman ke layar
+deactivate MT
+@enduml

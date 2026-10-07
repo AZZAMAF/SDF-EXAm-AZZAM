@@ -1,0 +1,36 @@
+@startuml
+|Anggota|
+start
+:Buka halaman detail buku\ndan klik "Reservasi";
+
+|Modul Akun|
+:Cek peran dan status keanggotaan;
+if (Akun aktif & belum kedaluwarsa?) then (Tidak)
+  :Tampilkan pesan "Keanggotaan tidak aktif";
+  stop
+else (Ya)
+
+|Modul Buku|
+:Periksa stok_tersedia di rak;
+if (stok_tersedia > 0?) then (Ya)
+  :Tampilkan pesan "Buku tersedia, silakan pinjam langsung";
+  note right: Mencegah user mereservasi\nbuku yang fisiknya masih ada.
+  stop
+else (Tidak)
+
+|Modul Transaksi|
+:Cek daftar reservasi milik anggota ini;
+if (Sudah masuk antrean buku yang sama?) then (Ya)
+  :Tampilkan pesan "Anda sudah ada di antrean";
+  stop
+else (Tidak)
+
+:Catat data reservasi baru;
+:Set waktu_reservasi = sekarang;
+:Set status = "menunggu";
+:Hitung dan tampilkan posisi antrean;
+
+|Anggota|
+:Melihat posisi antrean reservasi;
+stop
+@enduml

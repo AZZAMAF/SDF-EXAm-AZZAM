@@ -1,0 +1,35 @@
+@startuml
+left to right direction
+actor Anggota as A
+actor Pustakawan as P
+actor Admin as Ad
+
+package "Sistem PerpusKu" {
+  usecase "Mencari Buku" as UC1
+  usecase "Meminjam Buku" as UC2
+  usecase "Mereservasi Buku" as UC3
+  usecase "Memperpanjang Peminjaman" as UC4
+  
+  usecase "Mengelola Katalog Buku" as UC5
+  usecase "Memproses Pengembalian Buku" as UC6
+  usecase "Menerima Pembayaran Denda (Tunai)" as UC7
+  
+  usecase "Mengelola Status Akun" as UC8
+  usecase "Mengunduh Laporan Bulanan" as UC9
+}
+
+' Relasi Aktor Anggota
+A --> UC1
+A --> UC2
+A --> UC3
+A --> UC4
+
+' Relasi Aktor Pustakawan
+P --> UC5
+P --> UC6
+UC6 ..> UC7 : <<include>>
+
+' Relasi Aktor Admin
+Ad --> UC8
+Ad --> UC9
+@enduml

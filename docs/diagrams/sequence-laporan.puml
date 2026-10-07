@@ -1,0 +1,27 @@
+@startuml
+actor Admin
+participant "Modul Rekap" as MR
+participant "Modul Transaksi" as MT
+participant "Modul Buku" as MB
+
+== Fase Rekapitulasi Otomatis (Tanggal 1, 01:00) ==
+MR -> MT: Meminta kalkulasi total peminjaman & pendapatan denda
+activate MR
+activate MT
+MT --> MR: Data agregat transaksi sebulan terakhir
+deactivate MT
+
+MR -> MB: Meminta urutan data 10 buku terlaris
+activate MB
+MB --> MR: Data identitas 10 judul buku
+deactivate MB
+
+MR -> MR: Menyusun data dan menghasilkan file PDF Laporan
+deactivate MR
+
+== Fase Pengunduhan Laporan ==
+Admin -> MR: Klik "Unduh Laporan" pada dashboard
+activate MR
+MR --> Admin: Mengirimkan file PDF Laporan Bulanan
+deactivate MR
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+|Anggota|
+start
+:Pilih buku yang sedang dipinjam\ndan klik "Perpanjang";
+
+|Modul Transaksi|
+:Cari riwayat peminjaman buku tersebut;
+if (jumlah_perpanjangan sudah batas maksimal/1 kali?) then (Ya)
+  :Tampilkan pesan "Batas maksimal perpanjangan (1x) tercapai";
+  stop
+else (Tidak)
+  
+  :Cek status denda anggota;
+  if (Ada denda berstatus "belum lunas"?) then (Ya)
+    :Tampilkan pesan "Tidak bisa perpanjang, harap lunasi denda terlebih dahulu";
+    stop
+  else (Tidak)
+
+|Modul Buku|
+:Cek daftar antrean reservasi untuk buku ini;
+if (Ada anggota lain yang sedang mengantre?) then (Ya)
+  :Tampilkan pesan "Gagal: Buku sedang direservasi anggota lain";
+  note right: Mencegah monopoli buku\nyang sedang ditunggu orang.
+  stop
+else (Tidak)
+
+|Modul Transaksi|
+:Hitung tanggal_jatuh_tempo_baru (+7 hari);
+:Simpan tanggal_jatuh_tempo_baru;
+:Tambahkan nilai jumlah_perpanjangan (+1);
+:Tampilkan pesan "Perpanjangan berhasil";
+
+|Anggota|
+:Melihat tanggal jatuh tempo yang baru;
+stop
+@enduml

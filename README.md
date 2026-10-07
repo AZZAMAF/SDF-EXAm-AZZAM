@@ -1,28 +1,74 @@
-# PerpusKu: Soal Dokumentasi
+# Dokumentasi Sistem PerpusKu
 
-Repo ini berisi bahan untuk soal **merapikan dokumentasi sistem peminjaman buku perpustakaan (PerpusKu)**. Produknya sudah jadi. Tugasmu mengubah teks mentah menjadi dokumentasi yang rapi, lengkap dengan modul, diagram, UML, dan pengelolaan di GitHub.
+Repositori ini berisi hasil restrukturisasi dokumentasi **Sistem PerpusKu** — sistem peminjaman buku perpustakaan kampus — dari teks mentah di `raw/` menjadi dokumentasi terstruktur yang bisa dipahami tanpa membaca kode.
 
-## Mulai dari Sini
+> **Catatan:** instruksi soal asli tetap tersimpan di [SOAL.md](SOAL.md), dan bahan mentah tidak diubah di [raw/](raw/).
 
-1. **Buat repo pribadimu dari template ini.** Panduan langkah demi langkah ada di [identitas.md](identitas.md). Isi file itu setelah repo-mu jadi.
-2. **Baca instruksi lengkap** di [SOAL.md](SOAL.md): tugas, aturan, dan cara pengumpulan.
-3. **Baca bahan mentah** di folder [raw/](raw/).
+## Ringkasan Produk
 
-## Isi Repo
+PerpusKu menggantikan pencatatan peminjaman manual di buku besar. Sistem ini dipakai oleh tiga aktor:
+
+| Aktor | Tugas Utama |
+|---|---|
+| **Anggota** | Mencari, meminjam, memperpanjang, dan mereservasi buku. |
+| **Pustakawan** | Memproses pengembalian, denda, katalog, dan reservasi. |
+| **Admin** | Melihat laporan bulanan dan mengatur status akun. |
+
+Selengkapnya: [Gambaran Umum](docs/produk/gambaran-umum.md).
+
+## Daftar Isi Dokumentasi
+
+### 1. Dokumentasi Modul (Langkah 3)
+
+- [Ringkasan dan Peta Modul](docs/modules/README.md)
+  - [Modul 1 — Akun](docs/modules/akun-modul-1.md)
+  - [Modul 2 — Buku](docs/modules/buku-modul-2.md)
+  - [Modul 3 — Transaksi](docs/modules/transaksi-modul-3.md)
+  - [Modul 4 — Rekap](docs/modules/rekap-modul-4.md)
+
+### 2. Diagram Sistem (Langkah 4 & 5)
+
+- [Kumpulan Diagram](docs/diagrams/README.md)
+  - Activity: [Peminjaman](docs/diagrams/img/alur-peminjaman.png), [Pengembalian](docs/diagrams/img/alur-pengembalian.png), [Reservasi](docs/diagrams/img/alur-reservasi.png), [Perpanjangan](docs/diagrams/img/alur-perpanjangan.png)
+  - Use Case: [Use Case PerpusKu](docs/diagrams/img/usecase-perpusku.png)
+  - Sequence: [Peminjaman Buku](docs/diagrams/img/sequence-peminjaman.png), [Laporan Bulanan](docs/diagrams/img/sequence-laporan.png)
+
+### 3. Dokumentasi Produk (Langkah 6)
+
+- [Gambaran Umum Sistem](docs/produk/gambaran-umum.md) — deskripsi produk, cara kerja teknis, alur aplikasi, daftar fitur, tujuan, dan catatan temuan.
+
+### 4. Referensi
+
+- [Glosarium Istilah](docs/glosarium.md)
+- [Identitas Mahasiswa](identitas.md)
+
+## Struktur Repositori
 
 ```
 .
-├── README.md        (file ini)
-├── SOAL.md          (instruksi lengkap)
-├── identitas.md     (panduan membuat repo dan data dirimu)
-└── raw/             (bahan mentah, jangan diubah)
-    ├── 01-deskripsi-produk.txt
-    ├── 02-cara-kerja-teknis.txt
-    ├── 03-flow-aplikasi.txt
-    ├── 04-daftar-fitur.txt
-    └── 05-goal.txt
+├── README.md              (file ini — pintu masuk dokumentasi)
+├── SOAL.md                (instruksi soal, tidak diubah)
+├── identitas.md           (data mahasiswa)
+├── raw/                   (bahan mentah, tidak diubah)
+└── docs/
+    ├── produk/
+    │   └── gambaran-umum.md
+    ├── modules/           (modul + peta hubungan)
+    ├── diagrams/          (sumber .puml + README)
+    │   └── img/           (gambar .png hasil render)
+    └── glosarium.md       (daftar istilah)
 ```
 
-## Catatan
+## Temuan Penting
 
-Saat mengerjakan soal, isi `README.md` ini akan kamu ganti menjadi pintu masuk dokumentasi hasil kerjamu. Instruksi soal tetap tersimpan di `SOAL.md`.
+Dokumentasi mentah mengandung beberapa inkonsistensi yang sudah dicatat dan diputuskan di [Gambaran Umum](docs/produk/gambaran-umum.md#6-catatan-temuan-dan-keputusan), antara lain:
+
+- Kuota pinjam berbeda (3 vs 5 buku) — dipakai **3 buku**.
+- Masa pinjam berbeda (7 vs 14 hari) — dipakai **7 hari**.
+- Goal G-08 (notifikasi email) dan G-09 (bayar denda online) **dianulir**.
+
+## Daftar Issue
+
+Temuan-temuan di atas dibuka sebagai issue di repo ini dan diselesaikan satu per satu:
+
+- [Issue yang sudah ditutup](https://github.com/AZZAMAF/SDF-EXAm-AZZAM/issues?q=is%3Aissue+is%3Aclosed)

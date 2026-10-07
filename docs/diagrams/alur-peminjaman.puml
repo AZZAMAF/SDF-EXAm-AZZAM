@@ -1,0 +1,46 @@
+@startuml
+|Anggota|
+start
+:Pindai kode buku di ponsel/kios;
+
+|Modul Akun|
+:Cek peran, status, dan masa berlaku;
+if (Status aktif & belum kedaluwarsa?) then (Tidak)
+  :Tampilkan pesan "Akun tidak aktif";
+  stop
+else (Ya)
+
+|Modul Transaksi|
+:Hitung jumlah peminjaman berjalan;
+if (Jumlah buku < 3?) then (Tidak)
+  :Tampilkan pesan "Kuota 3 buku tercapai";
+  stop
+else (Ya)
+
+|Modul Buku|
+:Cek stok_tersedia;
+if (stok_tersedia > 0?) then (Ya)
+  :Kurangi stok_tersedia sebanyak 1;
+else (Tidak)
+  
+  |Modul Transaksi|
+  :Cek status reservasi anggota untuk buku ini;
+  if (Ada reservasi 'siap diambil'?) then (Ya)
+    :Ubah status reservasi menjadi 'selesai';
+    note right: Stok tidak dikurangi\nkarena sudah ditahan sebelumnya.
+  else (Tidak)
+    :Tampilkan pesan "Buku habis";
+    :Tawarkan untuk masuk antrean reservasi;
+    stop
+  endif
+endif
+
+|Modul Transaksi|
+:Catat peminjaman baru;
+:Set tanggal_jatuh_tempo = hari ini + 7 hari;
+:Tampilkan bukti peminjaman ke layar;
+
+|Anggota|
+:Terima bukti pinjam;
+stop
+@enduml

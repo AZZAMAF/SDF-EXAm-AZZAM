@@ -1,0 +1,37 @@
+@startuml
+|Pustakawan|
+start
+:Pindai buku yang dikembalikan;
+
+|Modul Transaksi|
+:Cari data peminjaman berjalan;
+:Catat tanggal_kembali = hari ini;
+:Hitung selisih hari terlambat;
+
+if (Ada keterlambatan?) then (Ya)
+  :Hitung denda (Rp1.000 x jumlah hari);
+  :Catat denda dengan status "belum lunas";
+  
+  |Pustakawan|
+  :Tagih denda ke anggota;
+  :Terima pembayaran TUNAI;
+  
+  |Modul Transaksi|
+  :Ubah status denda menjadi "lunas";
+else (Tidak)
+endif
+
+|Modul Buku|
+:Cek tabel antrean reservasi untuk buku ini;
+if (Ada antrean menunggu?) then (Ya)
+  :Pilih antrean paling awal;
+  :Ubah status reservasinya jadi "siap diambil";
+  note right: Stok buku TIDAK ditambah\nkarena langsung ditahan\nuntuk 2 hari ke depan.
+else (Tidak)
+  :Tambah stok_tersedia sebanyak 1;
+endif
+
+|Pustakawan|
+:Selesai memproses pengembalian;
+stop
+@enduml
